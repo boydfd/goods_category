@@ -97,9 +97,8 @@ def get_rectified_word(word, max_try_times=5):
     #     if len(nouns) is not 0 else  get_word_from_baike(word)
 
 
-def get_words_omitted_in_baike(words, output_name):
-    output_path = './output/missed_%s_words.txt' % output_name
-    output_file = open(output_path, 'w')
+def get_words_omitted_in_baike(words, output_missed_path, output_link_path):
+    output_file = open(output_missed_path, 'w')
     dictionary = get_filtered_dictionary()
     exist_words = []
     omitted_words = []
@@ -135,7 +134,7 @@ def get_words_omitted_in_baike(words, output_name):
         word_out = '%s %s %s\n' % (word, False, word_with_link)
         output_file.write(word_out)
     print(links)
-    with open('./output/%s_words_link.txt' % output_name, 'w') as f:
+    with open(output_link_path, 'w') as f:
         for index, word in enumerate(combined_list):
             path = './htmls/%s' % word
 
@@ -157,8 +156,9 @@ if __name__ == '__main__':
     del g_dict['机票\n/ 酒店\n/ 旅游\n/ 生活']
     del g_dict['理财\n/ 众筹\n/ 白条\n/ 保险']
 
-    out_path = './output/missed_jd_words'
+    out_missed_path = './output/missed_jd_words.txt'
+    out_link_path = './output/jd_words_link.txt'
     g_list = JdItems(g_dict).to_simple_list()
-    get_words_omitted_in_baike(g_list, 'jd')
+    get_words_omitted_in_baike(g_list, out_missed_path, out_link_path)
 
 pass

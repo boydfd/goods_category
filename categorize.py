@@ -71,10 +71,16 @@ class CategoryInverseIndex:
         return self.inverse_words[category]
 
 
-if __name__ == '__main__':
-    with open('./sources/category.txt') as file:
+def get_omitted_baike_links(category_path='./sources/category.txt',
+                            output_missed_path='./output/missed_standard_words.txt',
+                            output_link_path='./output/standard_words_link.txt'):
+    with open(category_path) as file:
         words = parse_categories_dict(parse_categories(file.read()))
         words = flatten(words.values())
-        get_words_omitted_in_baike(words, 'standard')
+        get_words_omitted_in_baike(words, output_missed_path, output_link_path)
+
+
+if __name__ == '__main__':
+    get_omitted_baike_links()
 
 pass

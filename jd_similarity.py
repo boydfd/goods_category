@@ -103,7 +103,7 @@ def get_baike_from_words(simi, words, output_path, error_path):
         for index, word in enumerate(words):
             try:
                 from_word = get_baike_from_word(simi, word)
-                output.write('%s %s\n' % (word, str(from_word)))
+                output.write('%s %s\n' % (word, ' '.join(list(from_word.astype(str)))))
             except:
                 error.write(str(word) + '\n')
 
@@ -130,16 +130,16 @@ def get_similarity():
     return similarity
 
 
-def get_all_goods():
+def save_goods_similarities():
     df = pd.read_csv('./output/needed_words.csv')
     words = df['all'].tolist()
 
-    get_baike_from_words(get_similarity(), words, './output/similarities/jd_result1.txt',
-                         './output/similarities/jd_error.txt')
+    get_baike_from_words(get_similarity(), words, './output/similarities/standard_result.txt',
+                         './output/similarities/standard_error.txt')
 
 
 if __name__ == '__main__':
-    get_all_goods()
+    save_goods_similarities()
 # similarity.calculate_similarity_lsi('./items/手机壳_.txt')
 # similarity.calculate_similarity_lsi('./items/上衣.txt')
 # similarity.calculate_similarity_lsi('./items/石榴.txt')

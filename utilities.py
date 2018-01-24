@@ -22,8 +22,8 @@ def get_content_from_html(html):
     return soup.find(class_='main-content').text
 
 
-def parse_html(word):
-    with open('./htmls/%s' % word, 'r') as f:
+def parse_html(word, path='./htmls'):
+    with open('%s/%s' % (path, word), 'r') as f:
         # html_doc = f.read()
         # soup = BeautifulSoup(html_doc, 'html.parser')
         with open('./jd_items/%s' % word, 'w') as r:
@@ -108,7 +108,6 @@ def get_filtered_dictionary():
 get_saved_similarities()
 
 if __name__ == '__main__':
-    words = get_jd_words()
     words = get_words('./output/standard_words_link.txt')
     for word in words:
         parse_html(word)
