@@ -88,7 +88,7 @@ def retry_for_timeout(function, times=5):
 
 
 def get_saved_similarities():
-    with open('./output/similarities/jd_result.txt') as f:
+    with open('./output/similarities/standard_result.txt') as f:
         return {
             w[0]: np.asarray(w[1:], np.float32)
             for word in f.read().split('\n') if word is not '' for w in [word.split(' ')]
@@ -105,7 +105,7 @@ def get_filtered_dictionary():
     return vectors.read().split('\n')
 
 
-get_saved_similarities()
+# get_saved_similarities()
 
 if __name__ == '__main__':
     words = get_words('./output/standard_words_link.txt')
