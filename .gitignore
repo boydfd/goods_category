@@ -1,0 +1,14 @@
+.idea
+__pycache__
+.Python
+.ipynb_checkpoints
+lib
+bin
+include
+htmls
+items
+jd_htmls
+jd_items
+model
+output
+sources
